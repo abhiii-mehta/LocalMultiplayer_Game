@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|d:\\suse25\\gameaweek\\abhi_multiplayer\\localmultiplayergame\\assets\\scripts\\menumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\menumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|d:\\suse25\\gameaweek\\abhi_multiplayer\\localmultiplayergame\\assets\\scripts\\checkpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\checkpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|d:\\suse25\\gameaweek\\abhi_multiplayer\\localmultiplayergame\\assets\\scripts\\debugteleport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\debugteleport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\assets\\scripts\\platformspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\platformspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\assets\\scripts\\checkpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\checkpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\assets\\scripts\\goalpad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\goalpad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\assets\\scripts\\gamestarthider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamestarthider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\assets\\scripts\\menumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\menumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{627BFBE5-F8DF-7190-FACC-CEA63171A199}|Assembly-CSharp.csproj|D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\assets\\scripts\\splitscreensetup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,24 +54,48 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "DebugTeleport.cs",
+              "DocumentMoniker": "D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\Assets\\Scripts\\DebugTeleport.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\DebugTeleport.cs",
+              "ToolTip": "D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\Assets\\Scripts\\DebugTeleport.cs",
+              "RelativeToolTip": "Assets\\Scripts\\DebugTeleport.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAiwDUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T19:27:40.545Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GameStartHider.cs",
+              "DocumentMoniker": "D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\Assets\\Scripts\\GameStartHider.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameStartHider.cs",
+              "ToolTip": "D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\Assets\\Scripts\\GameStartHider.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameStartHider.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T17:55:11.153Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Checkpoint.cs",
               "DocumentMoniker": "D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\Assets\\Scripts\\Checkpoint.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Checkpoint.cs",
               "ToolTip": "D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\Assets\\Scripts\\Checkpoint.cs",
               "RelativeToolTip": "Assets\\Scripts\\Checkpoint.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAiwBAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T16:44:22.522Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T16:44:22.522Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "MenuManager.cs",
               "DocumentMoniker": "D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\Assets\\Scripts\\MenuManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MenuManager.cs",
@@ -71,8 +103,7 @@
               "RelativeToolTip": "Assets\\Scripts\\MenuManager.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAIwCUAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T16:42:37.558Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T16:42:37.558Z"
             },
             {
               "$type": "Document",
@@ -82,13 +113,13 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\GoalPad.cs",
               "ToolTip": "D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\Assets\\Scripts\\GoalPad.cs",
               "RelativeToolTip": "Assets\\Scripts\\GoalPad.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAYwB8AAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAACwAAAAAAAAAAAAgwCIAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-27T15:58:10.215Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "SplitScreenSetup.cs",
               "DocumentMoniker": "D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\Assets\\Scripts\\SplitScreenSetup.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\SplitScreenSetup.cs",
@@ -100,7 +131,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "CameraFollow.cs",
               "DocumentMoniker": "D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\Assets\\Scripts\\CameraFollow.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\CameraFollow.cs",
@@ -112,7 +143,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "CameraTargetUpdater.cs",
               "DocumentMoniker": "D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\Assets\\Scripts\\CameraTargetUpdater.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\CameraTargetUpdater.cs",
@@ -124,19 +155,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "PlatformSpawner.cs",
               "DocumentMoniker": "D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\Assets\\Scripts\\PlatformSpawner.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlatformSpawner.cs",
               "ToolTip": "D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\Assets\\Scripts\\PlatformSpawner.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlatformSpawner.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAqwAUAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD4AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-27T00:03:42.093Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Tether.cs",
               "DocumentMoniker": "D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\Assets\\Scripts\\Tether.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Tether.cs",
@@ -148,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "PlayerMovement.cs",
               "DocumentMoniker": "D:\\SuSe25\\GameAWeek\\abhi_multiplayer\\LocalMultiplayerGame\\Assets\\Scripts\\PlayerMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerMovement.cs",

@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GoalPad : MonoBehaviour
 {
     private bool player1OnPad = false;
     private bool player2OnPad = false;
+
+    public GameObject youWinPanel;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -29,7 +32,29 @@ public class GoalPad : MonoBehaviour
     {
         if (player1OnPad && player2OnPad)
         {
-            Debug.Log("LEVEL COMPLETE!!! ");
+            Debug.Log("LEVEL COMPLETE!!!");
+
+            if (youWinPanel != null)
+            {
+                youWinPanel.SetActive(true);
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                Debug.LogError("YouWinPanel reference not assigned!");
+            }
         }
+    }
+
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void RestartLevel()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

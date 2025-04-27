@@ -10,6 +10,7 @@ public class Checkpoint : MonoBehaviour
         {
             lastCheckpointPosition = transform.position;
             Debug.Log("Checkpoint Reached!");
+            // No more calling UnlockNextCheckpoint!
         }
     }
 }
