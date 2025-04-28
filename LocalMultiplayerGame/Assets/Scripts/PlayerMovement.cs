@@ -11,9 +11,15 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 5f;
     private bool isGrounded = true;
 
+    private Animator animator;
+
+    // Drunk mode after checkpoint2
+    public bool isDrunk = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>(); // Get Animator
     }
 
     void Update()
@@ -45,7 +51,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
         movement = new Vector3(moveX, 0f, moveZ).normalized;
+
+        //  UPDATE Animator Parameters 
+        if (animator != null)
+        {
+            animator.SetBool("IsWalking", movement.magnitude > 0.1f);
+            animator.SetBool("IsJumping", !isGrounded);
+            animator.SetBool("IsDrunk", isDrunk);
+        }
     }
+
     void Jump()
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -64,5 +79,4 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
         }
     }
-
 }
