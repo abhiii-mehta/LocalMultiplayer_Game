@@ -4,22 +4,20 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public bool isPlayerOne = true;
+    public float jumpForce = 7f;
 
     private Rigidbody rb;
+    private Animator animator;
     private Vector3 movement;
 
-    public float jumpForce = 5f;
-    private bool isGrounded = true;
-
-    private Animator animator;
-
-    // Drunk mode after checkpoint2
-    public bool isDrunk = false;
+    private bool isJumping = false;
+    private float jumpTimer = 0f;
+    public float jumpDuration = 0.5f;  // How long jump "feels" like it lasts
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>(); // Get Animator
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -33,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.D)) moveX = 1f;
             if (Input.GetKey(KeyCode.W)) moveZ = 1f;
             if (Input.GetKey(KeyCode.S)) moveZ = -1f;
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
             }
@@ -44,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.RightArrow)) moveX = 1f;
             if (Input.GetKey(KeyCode.UpArrow)) moveZ = 1f;
             if (Input.GetKey(KeyCode.DownArrow)) moveZ = -1f;
-            if (Input.GetKeyDown(KeyCode.RightControl) && isGrounded)
+            if (Input.GetKeyDown(KeyCode.RightControl))
             {
                 Jump();
             }
@@ -52,31 +50,38 @@ public class PlayerMovement : MonoBehaviour
 
         movement = new Vector3(moveX, 0f, moveZ).normalized;
 
-        //  UPDATE Animator Parameters 
+        // Handle Walking Animation
         if (animator != null)
         {
-            animator.SetBool("IsWalking", movement.magnitude > 0.1f);
-            animator.SetBool("IsJumping", !isGrounded);
-            animator.SetBool("IsDrunk", isDrunk);
+            bool isMoving = movement.magnitude > 0.1f;
+
+            animator.SetBool("IsWalking", isMoving);
+        }
+
+        // If jumping, decrease timer
+        if (isJumping)
+        {
+            jumpTimer -= Time.deltaTime;
+            if (jumpTimer <= 0f)
+            {
+                isJumping = false;
+                animator.ResetTrigger("IsJumping");
+            }
         }
     }
 
-    void Jump()
-    {
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        isGrounded = false;
-    }
-
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void Jump()
     {
-        if (collision.contacts[0].normal == Vector3.up)
+        if (!isJumping)
         {
-            isGrounded = true;
+            animator.SetTrigger("IsJumping");
+            isJumping = true;
+            jumpTimer = jumpDuration;
         }
     }
 }
