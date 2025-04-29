@@ -31,55 +31,41 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.D)) moveX = 1f;
             if (Input.GetKey(KeyCode.W)) moveZ = 1f;
             if (Input.GetKey(KeyCode.S)) moveZ = -1f;
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Jump();
-            }
+            if (Input.GetKeyDown(KeyCode.Space)) Jump();
         }
         else
         {
             if (Input.GetKey(KeyCode.LeftArrow)) moveX = -1f;
             if (Input.GetKey(KeyCode.RightArrow)) moveX = 1f;
             if (Input.GetKey(KeyCode.UpArrow)) moveZ = 1f;
-            if (Input.GetKey(KeyCode.DownArrow)) moveZ = -1f;
-            if (Input.GetKeyDown(KeyCode.RightControl))
-            {
-                Jump();
-            }
+            if (Input.GetKeyDown(KeyCode.DownArrow)) moveZ = -1f;
+            if (Input.GetKeyDown(KeyCode.RightControl)) Jump();
         }
 
         movement = new Vector3(moveX, 0f, moveZ).normalized;
 
-        // Handle Walking Animation
+        // Animate walking
         if (animator != null)
         {
             bool isMoving = movement.magnitude > 0.1f;
             animator.SetBool("IsWalking", isMoving);
         }
 
-        // Handle Jumping Timer
+        // Handle jump timer
         if (isJumping)
         {
             jumpTimer -= Time.deltaTime;
             if (jumpTimer <= 0f)
             {
                 isJumping = false;
-                // animator.ResetTrigger("IsJumping");  // <-- Don't reset trigger manually (let animator handle exit naturally)
             }
         }
-
-        // Fake Gravity only if NOT jumping
-        if (!isJumping)
+        else
         {
-            Ray ray = new Ray(transform.position + Vector3.up * 0.1f, Vector3.down);
-            if (!Physics.Raycast(ray, 0.2f))
-            {
-                transform.position += Vector3.down * 5f * Time.deltaTime;
-            }
+            ApplyFakeGravity();  // Only apply gravity when not jumping
         }
-        
-        ApplyFakeGravity();
     }
+
     private void ApplyFakeGravity()
     {
         Ray ray = new Ray(transform.position + Vector3.up * 0.5f, Vector3.down);

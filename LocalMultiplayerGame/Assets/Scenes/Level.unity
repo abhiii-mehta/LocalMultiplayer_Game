@@ -188,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   isPlayerOne: 0
-  jumpForce: 7
+  jumpForce: 20
   jumpDuration: 0.5
 --- !u!4 &4749016 stripped
 Transform:
@@ -1014,7 +1014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   isPlayerOne: 1
-  jumpForce: 7
+  jumpForce: 20
   jumpDuration: 0.5
 --- !u!4 &1350944507 stripped
 Transform:
@@ -1679,9 +1679,9 @@ MonoBehaviour:
   youWinPanel: {fileID: 45950338}
   platformsPerStage: 10
   distanceBetween: 2
-  heightVariationEasy: 0.5
-  heightVariationMedium: 1
-  heightVariationHard: 1.5
+  heightVariationEasy: 0.1
+  heightVariationMedium: 0.2
+  heightVariationHard: 0.3
 --- !u!4 &1977779210
 Transform:
   m_ObjectHideFlags: 0
@@ -1691,7 +1691,7 @@ Transform:
   m_GameObject: {fileID: 1977779208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 5.01}
+  m_LocalPosition: {x: 0, y: -0.51, z: 5.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
