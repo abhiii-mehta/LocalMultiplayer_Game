@@ -1662,9 +1662,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98451a11b7df1ed40bde151a2d03ba9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformPrefab: {fileID: 1925976778263546400, guid: 9dc57bfdf9d49da45a6e388eee3f7001, type: 3}
-  checkpointPrefab: {fileID: 4556179449897481854, guid: f6009a409c4a0c74a993351a8fde4312, type: 3}
-  goalPadPrefab: {fileID: 3417744205228373147, guid: e4e9b7bad6edcb747a6845279b3d9104, type: 3}
+  platformPrefab: {fileID: 4810723049969770641, guid: 254cf5ee1a47dbd4da8b64846b9f2927, type: 3}
+  checkpointPrefab: {fileID: 2502571153405811663, guid: 9e05ada2305aabd4b8be5b4d10a8a59e, type: 3}
+  goalPadPrefab: {fileID: 1139756897732499409, guid: 00e78d44a3542aa45ae4abbce90a0f76, type: 3}
   youWinPanel: {fileID: 45950338}
   platformsPerStage: 10
   distanceBetween: 2
@@ -1680,7 +1680,7 @@ Transform:
   m_GameObject: {fileID: 1977779208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.51, z: 5.09}
+  m_LocalPosition: {x: -6, y: -0.51, z: 5.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

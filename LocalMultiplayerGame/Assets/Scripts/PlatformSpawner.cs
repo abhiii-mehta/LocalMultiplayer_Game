@@ -29,8 +29,10 @@ public class PlatformSpawner : MonoBehaviour
         }
 
         // Spawn Checkpoint 1
-        GameObject checkpoint1 = Instantiate(checkpointPrefab, spawnPosition, Quaternion.identity);
-        checkpoint1.tag = "Checkpoint"; // <<< TAG IT AFTER SPAWNING
+        Vector3 checkpointOffset = new Vector3(7f, -4f, 2f);
+        GameObject checkpoint1 = Instantiate(checkpointPrefab, spawnPosition + checkpointOffset, Quaternion.identity);
+
+        checkpoint1.tag = "Checkpoint";
         spawnPosition.z += distanceBetween;
 
         // --- Stage 2 (Medium) ---
@@ -44,8 +46,9 @@ public class PlatformSpawner : MonoBehaviour
         }
 
         // Spawn Checkpoint 2
-        GameObject checkpoint2 = Instantiate(checkpointPrefab, spawnPosition, Quaternion.identity);
-        checkpoint2.tag = "Checkpoint"; // <<< TAG IT AFTER SPAWNING
+        GameObject checkpoint2 = Instantiate(checkpointPrefab, spawnPosition + checkpointOffset, Quaternion.identity);
+
+        checkpoint2.tag = "Checkpoint";
         spawnPosition.z += distanceBetween;
 
         // --- Stage 3 (Hard) ---
@@ -58,9 +61,10 @@ public class PlatformSpawner : MonoBehaviour
             spawnPosition.z += distanceBetween;
         }
 
-        // Spawn GoalPad
-        GameObject goalPadInstance = Instantiate(goalPadPrefab, spawnPosition, Quaternion.identity);
-        goalPadInstance.tag = "GoalPad"; // <<< TAG IT AFTER SPAWNING
+        // Spawn GoalPad with Y-rotation to face players
+        Vector3 goalOffset = new Vector3(6f, 2f, 2f);
+        GameObject goalPadInstance = Instantiate(goalPadPrefab, spawnPosition + goalOffset, Quaternion.Euler(0, 90, 0));
+        goalPadInstance.tag = "GoalPad";
 
         GoalPad goalPadScript = goalPadInstance.GetComponent<GoalPad>();
         if (goalPadScript != null)
