@@ -54,18 +54,27 @@ public class PlayerMovement : MonoBehaviour
         if (animator != null)
         {
             bool isMoving = movement.magnitude > 0.1f;
-
             animator.SetBool("IsWalking", isMoving);
         }
 
-        // If jumping, decrease timer
+        // Handle Jumping Timer
         if (isJumping)
         {
             jumpTimer -= Time.deltaTime;
             if (jumpTimer <= 0f)
             {
                 isJumping = false;
-                animator.ResetTrigger("IsJumping");
+                // animator.ResetTrigger("IsJumping");  // <-- Don't reset trigger manually (let animator handle exit naturally)
+            }
+        }
+
+        // Fake Gravity only if NOT jumping
+        if (!isJumping)
+        {
+            Ray ray = new Ray(transform.position + Vector3.up * 0.1f, Vector3.down);
+            if (!Physics.Raycast(ray, 0.2f))
+            {
+                transform.position += Vector3.down * 5f * Time.deltaTime;
             }
         }
     }
