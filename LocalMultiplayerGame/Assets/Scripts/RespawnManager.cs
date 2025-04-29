@@ -60,6 +60,8 @@ public class RespawnManager : MonoBehaviour
 
         player1.position = respawnPoint.position + Vector3.left;
         player2.position = respawnPoint.position + Vector3.right;
+        player1.rotation = Quaternion.identity;
+        player2.rotation = Quaternion.identity;
 
         if (fadeImage != null)
         {

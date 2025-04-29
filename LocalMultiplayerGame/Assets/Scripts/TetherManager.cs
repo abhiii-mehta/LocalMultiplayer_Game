@@ -21,10 +21,10 @@ public class TetherManager : MonoBehaviour
 
         if (distance > breakDistance)
         {
-            tetherBroken = true;
-            line.enabled = false;
+            BreakTether();
             return;
         }
+
 
         line.SetPosition(0, player1.position);
         line.SetPosition(1, player2.position);
@@ -71,4 +71,22 @@ public class TetherManager : MonoBehaviour
             line.SetPosition(1, player2.position);
         }
     }
+    private void BreakTether()
+    {
+        if (tetherBroken) return;
+
+        tetherBroken = true;
+
+        if (line != null)
+            line.enabled = false;
+
+        Debug.Log("[TetherManager] Tether has broken!");
+
+        // Tell RespawnManager to respawn both players
+        if (RespawnManager.instance != null)
+        {
+            RespawnManager.instance.PlayerFell();
+        }
+    }
+
 }
