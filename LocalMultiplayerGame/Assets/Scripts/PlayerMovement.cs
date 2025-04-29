@@ -64,6 +64,14 @@ public class PlayerMovement : MonoBehaviour
         {
             ApplyFakeGravity();  // Only apply gravity when not jumping
         }
+
+        if (transform.position.y < -10f)
+        {
+            if (RespawnManager.instance != null)
+            {
+                RespawnManager.instance.PlayerFell();
+            }
+        }
     }
 
     private void ApplyFakeGravity()
