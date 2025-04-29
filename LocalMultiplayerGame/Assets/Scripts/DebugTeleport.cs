@@ -19,14 +19,17 @@ public class DebugTeleport : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f); // wait for spawner
 
-        GameObject[] checkpoints = GameObject.FindGameObjectsWithTag("Checkpoint");
+        GameObject[] checkpointObjects = GameObject.FindGameObjectsWithTag("Checkpoint");
         GameObject goalPad = GameObject.FindGameObjectWithTag("GoalPad");
 
-        checkpointPositions = new Transform[checkpoints.Length + 1];
+        // Sort checkpoints based on Z position
+        System.Array.Sort(checkpointObjects, (a, b) => a.transform.position.z.CompareTo(b.transform.position.z));
 
-        for (int i = 0; i < checkpoints.Length; i++)
+        checkpointPositions = new Transform[checkpointObjects.Length + 1];
+
+        for (int i = 0; i < checkpointObjects.Length; i++)
         {
-            checkpointPositions[i] = checkpoints[i].transform;
+            checkpointPositions[i] = checkpointObjects[i].transform;
         }
 
         if (goalPad != null)
@@ -36,6 +39,7 @@ public class DebugTeleport : MonoBehaviour
 
         Debug.Log($"[DebugTeleport] Found {checkpointPositions.Length} checkpoints including goal pad.");
     }
+
 
     private void Update()
     {
@@ -61,7 +65,8 @@ public class DebugTeleport : MonoBehaviour
         }
 
         Transform nextCheckpoint = checkpointPositions[currentCheckpointIndex];
-        TeleportTo(nextCheckpoint);
+        Transform teleportTarget = nextCheckpoint.Find("TeleportPoint") ?? nextCheckpoint;
+        TeleportTo(teleportTarget);
 
         // If we teleported to GoalPad
         if (currentCheckpointIndex == checkpointPositions.Length - 1)
@@ -69,17 +74,17 @@ public class DebugTeleport : MonoBehaviour
             GoalPad goalPad = FindObjectOfType<GoalPad>();
             if (goalPad != null)
             {
-                goalPad.ForceWin();  // Call new method
+                goalPad.ForceWin();
             }
         }
-
 
         currentCheckpointIndex++;
     }
 
+
     private void TeleportTo(Transform target)
     {
-        Vector3 offsetY = Vector3.up * 2f; // small lift
+        Vector3 offsetY = Vector3.up * 5f; // small lift
         player1.position = target.position + Vector3.left + offsetY;
         player2.position = target.position + Vector3.right + offsetY;
 
@@ -89,7 +94,7 @@ public class DebugTeleport : MonoBehaviour
 
     private void TeleportToStart()
     {
-        Vector3 offsetY = Vector3.up * 2f;
+        Vector3 offsetY = Vector3.up * 5f;
         player1.position = startPosition.position + Vector3.left + offsetY;
         player2.position = startPosition.position + Vector3.right + offsetY;
 

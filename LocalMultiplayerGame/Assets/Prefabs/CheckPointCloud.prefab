@@ -32,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 1130006560600704493}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5522210914135381289
@@ -107,8 +108,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.1369896, y: 1.1869755, z: 2.011804}
-  m_Center: {x: -0.7265537, y: 4.431281, z: -1.9827924}
+  m_Size: {x: 4.1737843, y: 1.1869755, z: 2.011804}
+  m_Center: {x: -0.70815647, y: 4.431281, z: -1.9827924}
 --- !u!114 &3373405144834794088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,3 +122,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff88053a3fabcf449e58897b48f7a7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5470212757327984980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1130006560600704493}
+  m_Layer: 0
+  m_Name: TeleportPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1130006560600704493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5470212757327984980}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.62, y: 5.23, z: -2.357}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2709642664826137288}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
