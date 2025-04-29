@@ -7,9 +7,6 @@ public class DebugTeleport : MonoBehaviour
     public Transform startPosition;
     public Transform player1;
     public Transform player2;
-    public float distanceThreshold = 10f;
-    private bool canTeleport = true;
-    public float teleportCooldown = 0.5f;
 
     private int currentCheckpointIndex = 0;
 
@@ -20,8 +17,7 @@ public class DebugTeleport : MonoBehaviour
 
     private IEnumerator FindCheckpointsDelayed()
     {
-        // Wait a tiny bit so PlatformSpawner can spawn everything
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f); // wait for spawner
 
         GameObject[] checkpoints = GameObject.FindGameObjectsWithTag("Checkpoint");
         GameObject goalPad = GameObject.FindGameObjectWithTag("GoalPad");
@@ -43,64 +39,18 @@ public class DebugTeleport : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T) && canTeleport)
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            StartCoroutine(TeleportCooldownRoutine(true));
+            SmartTeleport();
         }
 
-        if (Input.GetKeyDown(KeyCode.U) && canTeleport)
+        if (Input.GetKeyDown(KeyCode.U))
         {
-            StartCoroutine(TeleportCooldownRoutine(false));
-        }
-    }
-
-    private void TryTeleport()
-    {
-        if (checkpointPositions == null || checkpointPositions.Length == 0) return;
-
-        Vector3 averagePosition = (player1.position + player2.position) / 2f;
-        float playerZ = averagePosition.z;
-
-        if (playerZ < checkpointPositions[0].position.z)
-        {
-            TeleportToCheckpoint(0); // Before checkpoint1
-        }
-        else if (playerZ < checkpointPositions[1].position.z)
-        {
-            TeleportToCheckpoint(1); // Between checkpoint1 and checkpoint2
-        }
-        else
-        {
-            TeleportToCheckpoint(2); // After checkpoint2
-        }
-    }
-
-    private void TeleportToCheckpoint(int index)
-    {
-        if (index >= checkpointPositions.Length) return;
-
-        Vector3 checkpointPos = checkpointPositions[index].position;
-        Vector3 liftOffset = new Vector3(0, 3f, 0);
-        player1.position = checkpointPos + Vector3.left;
-        player2.position = checkpointPos + Vector3.right;
-
-        Debug.Log($"[DebugTeleport] Teleported to checkpoint {index + 1}");
-    }
-    private IEnumerator TeleportCooldownRoutine(bool toNextCheckpoint)
-    {
-        canTeleport = false;
-
-        if (toNextCheckpoint)
-            TeleportToNextCheckpoint();
-        else
             TeleportToStart();
-
-        yield return new WaitForSeconds(teleportCooldown);
-
-        canTeleport = true;
+        }
     }
 
-    private void TeleportToNextCheckpoint()
+    private void SmartTeleport()
     {
         if (checkpointPositions == null || checkpointPositions.Length == 0) return;
 
@@ -110,37 +60,52 @@ public class DebugTeleport : MonoBehaviour
             return;
         }
 
-        Vector3 checkpointPos = checkpointPositions[currentCheckpointIndex].position;
+        Transform nextCheckpoint = checkpointPositions[currentCheckpointIndex];
+        TeleportTo(nextCheckpoint);
 
-        Vector3 liftOffset = new Vector3(0, 1f, 0); // small lift up
+        // If we teleported to GoalPad
+        if (currentCheckpointIndex == checkpointPositions.Length - 1)
+        {
+            GoalPad goalPad = FindObjectOfType<GoalPad>();
+            if (goalPad != null)
+            {
+                goalPad.ForceWin();  // Call new method
+            }
+        }
 
-        player1.position = checkpointPos + Vector3.left + liftOffset;
-        player2.position = checkpointPos + Vector3.right + liftOffset;
-
-        Rigidbody rb1 = player1.GetComponent<Rigidbody>();
-        Rigidbody rb2 = player2.GetComponent<Rigidbody>();
-        if (rb1 != null) rb1.linearVelocity = Vector3.zero;
-        if (rb2 != null) rb2.linearVelocity = Vector3.zero;
-
-        Debug.Log($"[DebugTeleport] Teleported to checkpoint {currentCheckpointIndex + 1}");
 
         currentCheckpointIndex++;
     }
 
-    private void TeleportToStart()
+    private void TeleportTo(Transform target)
     {
-        Vector3 liftOffset = new Vector3(0, 1f, 0); // small lift up
+        Vector3 offsetY = Vector3.up * 2f; // small lift
+        player1.position = target.position + Vector3.left + offsetY;
+        player2.position = target.position + Vector3.right + offsetY;
 
-        player1.position = startPosition.position + Vector3.left + liftOffset;
-        player2.position = startPosition.position + Vector3.right + liftOffset;
-
-        Rigidbody rb1 = player1.GetComponent<Rigidbody>();
-        Rigidbody rb2 = player2.GetComponent<Rigidbody>();
-        if (rb1 != null) rb1.linearVelocity = Vector3.zero;
-        if (rb2 != null) rb2.linearVelocity = Vector3.zero;
-
-        currentCheckpointIndex = 0;
-        Debug.Log("[DebugTeleport] Teleported back to START");
+        ApplyFakeGravity(player1);
+        ApplyFakeGravity(player2);
     }
 
+    private void TeleportToStart()
+    {
+        Vector3 offsetY = Vector3.up * 2f;
+        player1.position = startPosition.position + Vector3.left + offsetY;
+        player2.position = startPosition.position + Vector3.right + offsetY;
+
+        ApplyFakeGravity(player1);
+        ApplyFakeGravity(player2);
+
+        currentCheckpointIndex = 0; // Reset progress
+    }
+
+    private void ApplyFakeGravity(Transform player)
+    {
+        // Trigger "ForceFall" manually if available
+        PlayerMovement movement = player.GetComponent<PlayerMovement>();
+        if (movement != null)
+        {
+            movement.ForceFall();
+        }
+    }
 }

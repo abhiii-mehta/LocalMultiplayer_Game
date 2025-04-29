@@ -77,6 +77,17 @@ public class PlayerMovement : MonoBehaviour
                 transform.position += Vector3.down * 5f * Time.deltaTime;
             }
         }
+        
+        ApplyFakeGravity();
+    }
+    private void ApplyFakeGravity()
+    {
+        Ray ray = new Ray(transform.position + Vector3.up * 0.5f, Vector3.down);
+        if (!Physics.Raycast(ray, 0.6f))
+        {
+            // Player is not grounded
+            transform.position += Vector3.down * 5f * Time.deltaTime;
+        }
     }
 
     private void FixedUpdate()
@@ -93,4 +104,10 @@ public class PlayerMovement : MonoBehaviour
             jumpTimer = jumpDuration;
         }
     }
+    public void ForceFall()
+    {
+        // Do nothing here for now, OR you can trigger manual raycast fake fall
+    }
+
+
 }

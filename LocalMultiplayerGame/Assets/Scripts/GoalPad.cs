@@ -28,7 +28,7 @@ public class GoalPad : MonoBehaviour
             player2OnPad = false;
     }
 
-    void CheckWinCondition()
+    public void CheckWinCondition()
     {
         if (player1OnPad && player2OnPad)
         {
@@ -57,4 +57,13 @@ public class GoalPad : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    public void ForceWin()
+    {
+        if (youWinPanel != null)
+        {
+            youWinPanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
+    }
+
 }

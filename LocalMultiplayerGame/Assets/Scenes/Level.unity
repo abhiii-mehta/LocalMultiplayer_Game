@@ -1576,8 +1576,6 @@ MonoBehaviour:
   startPosition: {fileID: 1903660698}
   player1: {fileID: 1350944507}
   player2: {fileID: 4749016}
-  distanceThreshold: 10
-  teleportCooldown: 0.5
 --- !u!4 &1880588615
 Transform:
   m_ObjectHideFlags: 0
