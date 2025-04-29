@@ -8,9 +8,17 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Player1") || other.CompareTag("Player2"))
         {
-            lastCheckpointPosition = transform.position;
-            Debug.Log("Checkpoint Reached!");
-            // No more calling UnlockNextCheckpoint!
+            Debug.Log("[Checkpoint] Player reached checkpoint!");
+
+            // Tell RespawnManager this is the new checkpoint
+            if (RespawnManager.instance != null)
+            {
+                RespawnManager.instance.SetCheckpoint(transform);
+            }
+
+            // Optional: You can destroy checkpoint or deactivate it after touched
+            // gameObject.SetActive(false);
         }
     }
+
 }
