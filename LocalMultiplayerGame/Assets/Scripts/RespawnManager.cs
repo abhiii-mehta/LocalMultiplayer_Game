@@ -10,6 +10,9 @@ public class RespawnManager : MonoBehaviour
     public Transform player2;
     public Transform fallbackStartPoint; // Starting point if no checkpoint reached
 
+    public GameObject tetherPrefab;
+    private GameObject currentTether;
+
     private Transform currentCheckpoint;
     public Image fadeImage; // Black full-screen image for fading
     public float fadeDuration = 1f;
@@ -45,32 +48,59 @@ public class RespawnManager : MonoBehaviour
     {
         isRespawning = true;
 
-        // Fade to black
         if (fadeImage != null)
         {
             fadeImage.gameObject.SetActive(true);
             yield return StartCoroutine(FadeToBlack());
         }
 
-        // Wait briefly
         yield return new WaitForSeconds(0.5f);
 
-        // Teleport players
         Transform respawnPoint = currentCheckpoint != null ? currentCheckpoint : fallbackStartPoint;
 
         player1.position = respawnPoint.position + Vector3.left;
         player2.position = respawnPoint.position + Vector3.right;
 
-        // Reset gravity triggers or any fall logic here if needed (optional)
-
-        // Fade back
         if (fadeImage != null)
         {
             yield return StartCoroutine(FadeFromBlack());
             fadeImage.gameObject.SetActive(false);
         }
 
+        RebuildTether();
+
         isRespawning = false;
+    }
+
+    private void RebuildTether()
+    {
+        // After teleporting players
+        if (currentTether != null)
+            Destroy(currentTether);
+
+        currentTether = Instantiate(tetherPrefab);
+
+        // Reconnect systems
+        TetherManager tetherManager = currentTether.GetComponent<TetherManager>();
+        TetherPuller tetherPuller = currentTether.GetComponent<TetherPuller>();
+
+        if (tetherManager != null)
+        {
+            tetherManager.player1 = player1;
+            tetherManager.player2 = player2;
+            tetherManager.line = currentTether.GetComponent<LineRenderer>();
+            tetherManager.ResetTether(player1, player2, player1.GetComponent<Rigidbody>(), player2.GetComponent<Rigidbody>());
+
+        }
+
+        if (tetherPuller != null)
+        {
+            tetherPuller.player1 = player1;
+            tetherPuller.player2 = player2;
+            tetherPuller.rb1 = player1.GetComponent<Rigidbody>();
+            tetherPuller.rb2 = player2.GetComponent<Rigidbody>();
+        }
+
     }
 
     private IEnumerator FadeToBlack()

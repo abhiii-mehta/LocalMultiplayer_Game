@@ -4,66 +4,71 @@ public class TetherManager : MonoBehaviour
 {
     public Transform player1;
     public Transform player2;
-    public LineRenderer lineRenderer;
+    public LineRenderer line;
 
-    public float breakDistance = 15f;
-    public float dangerDistance = 8f;  // Distance at which color is fully red
-    public float pullStartDistance = 4f; // Distance where color starts changing
+    public float breakDistance = 10f;
+    public float dangerDistance = 8f;
+    public float pullStartDistance = 6f;
 
-    private Color calmColor = Color.blue;
-    private Color warningColor = Color.yellow;
-    private Color dangerColor = Color.red;
+    private bool tetherBroken = false;
 
-    void Update()
+    private void Update()
     {
-        if (player1 == null || player2 == null || lineRenderer == null)
+        if (tetherBroken || player1 == null || player2 == null || line == null)
             return;
 
-        // Update line positions
-        lineRenderer.SetPosition(0, player1.position);
-        lineRenderer.SetPosition(1, player2.position);
+        float distance = Vector3.Distance(player1.position, player2.position);
 
-        float currentDistance = Vector3.Distance(player1.position, player2.position);
-
-        UpdateTetherColor(currentDistance);
-
-        // OPTIONAL: Break if stretched way too far
-        if (currentDistance > breakDistance)
+        if (distance > breakDistance)
         {
-            BreakTether();
+            tetherBroken = true;
+            line.enabled = false;
+            return;
         }
+
+        line.SetPosition(0, player1.position);
+        line.SetPosition(1, player2.position);
+
+        Color color = Color.cyan;
+        if (distance > dangerDistance)
+            color = Color.red;
+        else if (distance > pullStartDistance)
+            color = Color.yellow;
+
+        line.startColor = color;
+        line.endColor = color;
     }
 
-    private void UpdateTetherColor(float distance)
+    public void ResetTether(Transform newP1, Transform newP2, Rigidbody newRb1, Rigidbody newRb2)
     {
-        if (distance < pullStartDistance)
+        player1 = newP1;
+        player2 = newP2;
+
+        if (line != null)
         {
-            // Calm Zone
-            SetTetherColor(calmColor);
+            line.enabled = true;
+            line.startColor = Color.cyan;
+            line.endColor = Color.cyan;
         }
-        else if (distance >= pullStartDistance && distance < dangerDistance)
+
+        if (TryGetComponent<TetherPuller>(out TetherPuller puller))
         {
-            // Blend between Yellow based on stretch
-            float t = (distance - pullStartDistance) / (dangerDistance - pullStartDistance);
-            Color blendedColor = Color.Lerp(warningColor, dangerColor, t);
-            SetTetherColor(blendedColor);
+            puller.player1 = newP1;
+            puller.player2 = newP2;
+            puller.rb1 = newRb1;
+            puller.rb2 = newRb2;
         }
-        else
-        {
-            // Full danger color
-            SetTetherColor(dangerColor);
-        }
+
+        UpdateLine();
+        tetherBroken = false;
     }
 
-    private void SetTetherColor(Color color)
+    private void UpdateLine()
     {
-        lineRenderer.startColor = color;
-        lineRenderer.endColor = color;
-    }
-
-    private void BreakTether()
-    {
-        Debug.Log("[TetherManager] Tether broken!");
-        Destroy(lineRenderer);
+        if (line != null && player1 != null && player2 != null)
+        {
+            line.SetPosition(0, player1.position);
+            line.SetPosition(1, player2.position);
+        }
     }
 }
